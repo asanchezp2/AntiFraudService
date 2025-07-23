@@ -1,7 +1,8 @@
 # Anti-Fraud Service
-**Version:** 1.2.2
+
+**Version:** 1.2.2  
 **Author:** Armando Sánchez Pérez  
-**Email:** armandosanchezperez1986@gmail.com 
+**Email:** armandosanchezperez1986@gmail.com   
 **Copyright:** © 2025
 
 This project implements an anti-fraud microservice to validate financial transactions in real-time. Each created transaction is evaluated by this service, which then updates its status.
