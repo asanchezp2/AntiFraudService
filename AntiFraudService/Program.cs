@@ -1,7 +1,11 @@
-using AntiFraudService.Appplication.Commands.UpdateTransaction;
+using AntiFraudService.Application.Commands.UpdateTransaction;
 using AntiFraudService.Domain.Interfaces;
 using Application.Commands.CreateTransaction;
+using Application.Commands.CreateTransaction.Validators;
+using Application.Commands.UpdateTransaction.Validators;
 using Confluent.Kafka;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Infrastructure.DependencyInjection;
 using Infrastructure.Messaging;
 using Infrastructure.Persistence;
@@ -21,6 +25,10 @@ builder.Configuration.AddEnvironmentVariables();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+// Register FluentValidation
+builder.Services.AddFluentValidationAutoValidation();
+builder.Services.AddValidatorsFromAssemblyContaining<CreateTransactionCommandValidator>();
 
 // Register MediatR handlers
 builder.Services.AddMediatR(cfg =>
@@ -54,6 +62,10 @@ builder.Services.AddScoped<UpdateTransactionHandler>();
 
 builder.Services.AddHostedService<TransactionStatusWorker>();
 
+// Health Checks
+builder.Services.AddHealthChecks()
+    .AddDbContextCheck<TransactionDbContext>("postgres");
+
 // Build the app
 var app = builder.Build();
 
@@ -80,5 +92,6 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
+app.MapHealthChecks("/health");
 
 app.Run();

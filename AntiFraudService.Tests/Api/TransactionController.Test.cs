@@ -34,7 +34,7 @@ namespace AntiFraudService.Tests.Api.Controllers
             var transactionResponse = new TransactionResponseDto
             {
                 TransactionExternalId = Guid.NewGuid(),
-                CreatedAt = DateTime.Now,
+                CreatedAt = DateTime.UtcNow,
                 Status = "pending"
             };
 

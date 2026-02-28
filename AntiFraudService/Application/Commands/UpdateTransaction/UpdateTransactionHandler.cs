@@ -4,7 +4,7 @@ using Domain.Enums;
 using Domain.Interfaces;
 using MediatR;
 
-namespace AntiFraudService.Appplication.Commands.UpdateTransaction;
+namespace AntiFraudService.Application.Commands.UpdateTransaction;
 
 public class UpdateTransactionHandler : IRequestHandler<UpdateTransactionCommand, TransactionResponseDto>
 {
@@ -19,7 +19,7 @@ public class UpdateTransactionHandler : IRequestHandler<UpdateTransactionCommand
     {
         // Anti-fraud validation
         var status = TransactionStatus.Approved;
-        var accumulated = await _repository.GetDailyAccumulatedAsync(request.SourceAccountId, DateTime.Now);
+        var accumulated = await _repository.GetDailyAccumulatedAsync(request.SourceAccountId, DateTime.UtcNow);
         if (request.Value > 2000 || accumulated + request.Value > 20000)
         {
             status = TransactionStatus.Rejected;

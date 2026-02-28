@@ -1,4 +1,4 @@
-﻿using AntiFraudService.Appplication.Commands.UpdateTransaction;
+﻿using AntiFraudService.Application.Commands.UpdateTransaction;
 using AntiFraudService.Domain.Interfaces;
 using Application.Commands.UpdateTransaction;
 

@@ -1,4 +1,4 @@
-﻿using AntiFraudService.Appplication.Commands.UpdateTransaction;
+﻿using AntiFraudService.Application.Commands.UpdateTransaction;
 using Application.Commands.UpdateTransaction;
 using Domain.Entities;
 using Domain.Enums;

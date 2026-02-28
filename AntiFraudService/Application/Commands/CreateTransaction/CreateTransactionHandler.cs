@@ -28,7 +28,7 @@ public class CreateTransactionHandler : IRequestHandler<CreateTransactionCommand
             TargetAccountId = request.TargetAccountId,
             TransferTypeId = request.TransferTypeId,
             Value = request.Value,
-            CreatedAt = DateTime.Now,
+            CreatedAt = DateTime.UtcNow,
             Status = TransactionStatus.Pending
         };
 
